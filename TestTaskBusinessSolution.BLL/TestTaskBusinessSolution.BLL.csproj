@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestTaskBusinessSolution.BLL.DTO\TestTaskBusinessSolution.BLL.DTO.csproj" />
+    <ProjectReference Include="..\TestTaskBusinessSolution.BLL.Interfaces\TestTaskBusinessSolution.BLL.Interfaces.csproj" />
+    <ProjectReference Include="..\TestTaskBusinessSolution.DAL\TestTaskBusinessSolution.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

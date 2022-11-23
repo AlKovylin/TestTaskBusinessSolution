@@ -1,0 +1,63 @@
+﻿@using TestTaskBusinessSolution.Models;
+
+@model OrderEditViewModel;
+
+@{
+    ViewData["Title"] = "Редактирование заказа";
+}
+
+<div class="text-center">
+    <h1 class="display-4 p-3">Редактирование заказа</h1>
+</div>
+<div>
+    <input type="hidden" id="txtOrderId" value="@Model.Order!.Id" />
+    <form>
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="row mb-2">
+            <div class="col-1">
+                <label>Номер:</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="orderNumber" class="form-control" value="@Model.Order!.Number" required>
+                <span asp-validation-for="@Model.Order!.Number" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-1">
+                <label>Дата:</label>
+            </div>
+            <div class="col-auto">
+                <input type="date" id="orderDate" class="form-control" value="@Model.Order!.Date.ToString("yyyy-MM-dd")" required>
+                <span asp-validation-for="@Model.Order!.Date" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-1">
+                <label>Поставщик:</label>
+            </div>
+            <div class="col-auto">
+                <select asp-items="@(new SelectList(Model.Providers, nameof(ProviderViewModel.Id), nameof(ProviderViewModel.Name), Model.Order.ProviderId))" type="text" id="orderProviderId" class="form-select" required>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-1">
+            </div>
+            <div class="col-auto">
+                <button type="button" onclick="UpdateOrder()" class="btn btn-outline-primary mb-3">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="itemsPartial" class="row justify-content-center">
+    <partial name="/Views/Items/_ItemsPartial.cshtml" model="@Model.OrderItems" />
+</div>
+<div>
+    <partial name="/Views/Items/_ItemAddPartial.cshtml" model="@Model.OrderItems" />
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

@@ -1,0 +1,39 @@
+﻿@using TestTaskBusinessSolution.Models;
+
+@model OrderCreateViewModel;
+
+@{
+    ViewData["Title"] = "Новый заказ";
+}
+
+<div class="text-center">
+    <h1 class="display-4 p-3">Новый заказ</h1>
+    <form id="createOrderForm">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="row">
+            <div class="col-md-3">
+                <label for="numCreateView" class="form-label">Введите номер заказа</label>
+                <input asp-for="Number" type="text" class="form-control" id="numCreateView" required="">
+                <span asp-validation-for="@Model.Number" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label for="provCreateView" class="form-label">Выберите поставщика</label>
+                <select asp-for="@Model.SelectedProvider" asp-items="@Model.Providers" id="provCreateView" class="form-select" >
+                </select>
+                <hr class="my-4 w-auto">
+            </div>
+        </div>        
+        <div class="row mb-3">
+            <div class="col-auto">                
+                <button type="submit" onclick="CreateOrder()" class="btn btn-outline-primary mb-3">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestTaskBusinessSolution.BLL.DTO\TestTaskBusinessSolution.BLL.DTO.csproj" />
+    <ProjectReference Include="..\TestTaskBusinessSolution.BLL\TestTaskBusinessSolution.BLL.csproj" />
+    <ProjectReference Include="..\TestTaskBusinessSolution.DAL\TestTaskBusinessSolution.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

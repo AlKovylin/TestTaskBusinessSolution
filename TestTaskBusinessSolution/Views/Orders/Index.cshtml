@@ -1,0 +1,73 @@
+﻿@using TestTaskBusinessSolution.Models;
+
+@model OrdersViewModel;
+
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+<div class="text-center">
+    <h1 class="display-4 p-3">Заказы</h1>
+    <div class="row">
+        <div class="col-auto">
+            <form id="filtersOrdersForm">
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 325px">
+                    <span class="text-primary fs-3">Фильтры</span>
+                    <hr>
+                    <div class="nav nav-pills flex-column mb-auto">
+                        <div class="row">
+                            <div class="col-auto">
+                                <label>По дате:</label>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-auto">
+                                <label>от:</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="date" class="form-control" name="dateFrom" value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")">
+                            </div>
+                        </div>
+                        <div class="p-1"></div>
+                        <div class="row justify-content-end">
+                            <div class="col-auto">
+                                <label class="">до:</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="date" class="form-control" name="dateTo" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                            </div>
+                        </div>
+                        <div class="p-1"></div>
+                        <div class="row justify-content-between">
+                            <div class="col-auto">
+                                <label class="">По поставщику:</label>
+                            </div>
+                            <div class="col-auto">
+                                <select multiple asp-for="@Model.SelectedProviders" asp-items="@Model.Providers" class="form-select" size="4" style="width: 150px">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="p-1"></div>
+                    <div class="col-auto">
+                        <button type="button" onclick="ApplyFilters()" class="btn btn-outline-primary mb-3">Применить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div class="row justify-content-center">
+                <div id="ordersPartial">
+                    <partial name="/Views/Orders/_OrdersPartial.cshtml" model="@Model.Orders" />
+                </div>
+                <div class="col-auto">
+                    <form asp-controller="Orders" asp-action="Create" method="get">
+                        <button type="submit" class="btn btn-outline-primary mb-3">Создать заказ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
